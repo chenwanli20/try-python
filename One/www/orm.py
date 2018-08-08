@@ -3,7 +3,7 @@ import asyncio, logging
 import aiomysql
 
 
-def log（sql, args=()）:
+def log(sql, args=()):
     logging.info('SQL: %s' % sql)
 
 
@@ -65,22 +65,22 @@ def create_args_string(num):
 
 class Field(object):
 
-    def _init_(self, name, column_type, primary_key, default):
+    def __init__(self, name, column_type, primary_key, default):
         self.name = name
         self.column_type = column_type
         self.primary_key = primary_key
         self.default = default
 
-    def _str_(self):
+    def __str__(self):
         return '<%s, %s:%s>' % (self.__class__.__name__, self.column_type, self.name)
 
 class StringField(Field):
-    def _init_(self, name = None, primary_key = False, default = None, ddl = 'varchar(100)'):
-        super()._init_(name, ddl, primary_key, default)
+    def __init__(self, name = None, primary_key = False, default = None, ddl = 'varchar(100)'):
+        super().__init__(name, ddl, primary_key, default)
 
 class BooleanField(Field):
-    def _init_(self, name = None, default = False):
-        super.__init__(name, 'boolean', False, default)
+    def __init__(self, name = None, default = False):
+        super().__init__(name, 'boolean', False, default)
 
 class IntegerField(Field):
     def __init__(self, name=None, primary_key=False, default=0):
@@ -219,9 +219,9 @@ class Model(dict, metaclass = ModelMetaclass):
     
     async def save(self):
         args = list(map(self.getValueOrDefault, self.__fields__))
-        args.append(self.getValueOrDefault(selc.__primary_key__))
+        args.append(self.getValueOrDefault(self.__primary_key__))
         rows = await execute(self.__insert__, args)
-        if rows != 1
+        if rows != 1:
             logging.warn('failed to insert record: affected rows: %s' % rows)
     
     async def update(self):

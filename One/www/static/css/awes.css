@@ -1,0 +1,32 @@
+/*
+ * custom css
+ */
+a:hover, a:active {
+    text-decoration: none;
+}
+
+#vm {
+    display: none;
+}
+#loading {
+    margin-bottom: 15px;
+}
+#error {
+    display: none;
+    margin-bottom: 15px;
+}
+
+.reds {
+    color: blueviolet;
+}
+
+.uk-col111 {
+    margin-top: 300px;
+    color:red;
+}
+
+.skchange {
+    color:yellow;
+    font-size: 40px;
+
+}
